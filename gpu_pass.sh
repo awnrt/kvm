@@ -50,8 +50,12 @@ sudo cp Hooks/isocpurevert.sh /etc/libvirt/hooks/qemu.d/win10/release/end/
 printf ${MAGENTA}"Configuring kvm.conf...\n"
 printf ${LIGHTGREEN}""
 
-sudo echo "VIRSH_GPU_VIDEO=pci_0000_01_00_0" >> /etc/libvirt/hooks/kvm.conf
-sudo echo "VIRSH_GPU_AUDIO=pci_0000_01_00_1" >> /etc/libvirt/hooks/kvm.conf
+sudo cp Hooks/kvm.conf /etc/libvirt/hooks/
+
+printf ${MAGENTA}"Defining Win10.xml...\n"
+printf ${LIGHTGREEN}""
+
+sudo virsh define win10.xml
 
 printf ${LIGHTGREEN}"\nYou are done!\n"
 printf ${LIGHTGREEN}""
