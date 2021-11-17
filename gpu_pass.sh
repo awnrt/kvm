@@ -51,7 +51,7 @@ printf ${MAGENTA}"Configuring kvm.conf...\n"
 printf ${LIGHTGREEN}""
 
 sudo echo "VIRSH_GPU_VIDEO=pci_0000_01_00_0" >> /etc/libvirt/hooks/kvm.conf
-sudo echo "VIRSH_GPU_AUDIO=pci_0000_01_00_0" >> /etc/libvirt/hooks/kvm.conf
+sudo echo "VIRSH_GPU_AUDIO=pci_0000_01_00_1" >> /etc/libvirt/hooks/kvm.conf
 
 printf ${LIGHTGREEN}"\nYou are done!\n"
 printf ${LIGHTGREEN}""
