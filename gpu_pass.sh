@@ -5,8 +5,6 @@ MAGENTA='\033[1;35m'
 CYAN='\033[1;96m'
 NoColor='\033[0m'
 
-cp patch.rom /home/$USER/
-
 printf ${MAGENTA}"Installing QEMU...\n"
 printf ${LIGHTGREEN}""
 
