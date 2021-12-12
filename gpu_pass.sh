@@ -50,10 +50,5 @@ printf ${LIGHTGREEN}""
 
 sudo cp Hooks/kvm.conf /etc/libvirt/hooks/
 
-printf ${MAGENTA}"Defining Win10.xml...\n"
-printf ${LIGHTGREEN}""
-
-sudo virsh define win10.xml
-
 printf ${LIGHTGREEN}"\nYou are done!\n"
 printf ${LIGHTGREEN}""
