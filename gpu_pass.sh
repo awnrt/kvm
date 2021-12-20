@@ -11,7 +11,7 @@ sudo cp /Hooks/patch.rom /usr/share/vgabios/
 printf ${MAGENTA}"Installing QEMU...\n"
 printf ${LIGHTGREEN}""
 
-sudo pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget
+sudo pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget --noconfirm
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
 sudo systemctl enable virtlogd.socket
