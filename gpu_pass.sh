@@ -5,6 +5,9 @@ MAGENTA='\033[1;35m'
 CYAN='\033[1;96m'
 NoColor='\033[0m'
 
+sudo mkdir /usr/share/vgabios
+sudo cp /Hooks/patch.rom /usr/share/vgabios/
+
 printf ${MAGENTA}"Installing QEMU...\n"
 printf ${LIGHTGREEN}""
 
