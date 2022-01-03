@@ -22,3 +22,5 @@ virsh nodedev-detach $VIRSH_GPU_AUDIO
 modprobe vfio
 modprobe vfio_pci
 modprobe vfio_iommu_type1
+
+./usr/share/UnbindUSB/vfio-usb.sh 0000:00:14.0
