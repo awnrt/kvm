@@ -13,7 +13,7 @@ sudo cp Hooks/vfio-usb.sh /usr/share/UnbindUSB
 printf ${MAGENTA}"Installing QEMU...\n"
 printf ${LIGHTGREEN}""
 
-sudo pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget
+sudo pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget qemu-ui-sdl qemu-ui-gtk
 sudo systemctl enable libvirtd.service
 sudo systemctl start libvirtd.service
 sudo systemctl enable virtlogd.socket
