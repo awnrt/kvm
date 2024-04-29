@@ -3,7 +3,9 @@ set -x
 
 source "/etc/libvirt/hooks/kvm.conf"
 
-systemctl stop sddm.service
+#systemctl stop sddm.service
+killall dwl
+
 echo 0 > /sys/class/vtconsole/vtcon0/bind
 echo 0 > /sys/class/vtconsole/vtcon1/bind
 echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
@@ -23,4 +25,4 @@ modprobe vfio
 modprobe vfio_pci
 modprobe vfio_iommu_type1
 
-./usr/share/UnbindUSB/vfio-usb.sh 0000:00:14.0
+#./usr/share/UnbindUSB/vfio-usb.sh 0000:00:14.0

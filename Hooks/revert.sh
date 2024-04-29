@@ -23,7 +23,7 @@ modprobe nvidia
 modprobe drm
 modprobe nvidia_uvm
 
-systemctl start sddm.service
+#systemctl start sddm.service
 
-echo 0000:00:14.0 > /sys/bus/pci/drivers/vfio-pci/unbind
-echo 0000:00:14.0 > /sys/bus/pci/drivers/xhci_hcd/bind
+#echo 0000:00:14.0 > /sys/bus/pci/drivers/vfio-pci/unbind
+#echo 0000:00:14.0 > /sys/bus/pci/drivers/xhci_hcd/bind

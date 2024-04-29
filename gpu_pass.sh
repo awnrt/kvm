@@ -1,59 +1,41 @@
-LIGHTGREEN='\033[1;32m'
-LIGHTRED='\033[1;91m'
-WHITE='\033[1;97m'
-MAGENTA='\033[1;35m'
-CYAN='\033[1;96m'
-NoColor='\033[0m'
+WORKDIRECTORY=$PWD
+PERMUSER="awy"
 
-sudo mkdir /usr/share/vgabios
-sudo cp Hooks/patch.rom /usr/share/vgabios
-sudo mkdir /usr/share/UnbindUSB
-sudo cp Hooks/vfio-usb.sh /usr/share/UnbindUSB
+if [ "$EUID" -ne 0 ]
+  then printf "The script has to be run as root.\n"
+  exit
+fi
 
-printf ${MAGENTA}"Installing QEMU...\n"
-printf ${LIGHTGREEN}""
+sudo -u $PERMUSER mkdir -p /home/$PERMUSER/.local/share/vgabios
+sudo -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share/vgabios
 
-sudo pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget qemu-ui-sdl qemu-ui-gtk
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
-sudo systemctl enable virtlogd.socket
-sudo systemctl start virtlogd.socket
-sudo virsh net-autostart default
-sudo virsh net-start default
+# FOR ARCH LINUX vvvv
+#pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget qemu-ui-sdl qemu-ui-gtk
+#systemctl enable libvirtd.service
+#systemctl start libvirtd.service
+#systemctl enable virtlogd.socket
+#systemctl start virtlogd.socket
+#virsh net-autostart default
+#virsh net-start default
 
-clear
+# ARTIX LINUX + DINIT
+pacman -Sy --noconfirm
+pacman -S qemu-full libvirt libvirt-dinit edk2-ovmf virt-manager dnsmasq wget
 
-printf ${MAGENTA}"Installing hooks manager...\n"
-printf ${LIGHTGREEN}""
+mkdir /etc/libvirt/hooks
 
-sudo mkdir /etc/libvirt/hooks
+#wget 'https://raw.githubusercontent.com/PassthroughPOST/VFIO-Tools/master/libvirt_hooks/qemu' \
+#     -O /etc/libvirt/hooks/qemu
+cp $WORKDIRECTORY/Hooks/qemu /etc/libvirt/hooks/
 
-sudo wget 'https://raw.githubusercontent.com/PassthroughPOST/VFIO-Tools/master/libvirt_hooks/qemu' \
-     -O /etc/libvirt/hooks/qemu
+chmod +x /etc/libvirt/hooks/qemu
 
-sudo chmod +x /etc/libvirt/hooks/qemu
+mkdir -p /etc/libvirt/hooks/qemu.d/win10-hidden-pt/prepare/begin
+mkdir -p /etc/libvirt/hooks/qemu.d/win10-hidden-pt/release/end
 
-clear
+cp $WORKDIRECTORY/Hooks/start.sh /etc/libvirt/hooks/qemu.d/win10-hidden-pt/prepare/begin/
+#sudo cp Hooks/isolstart.sh /etc/libvirt/hooks/qemu.d/win10/prepare/begin/
+cp $WORKDIRECTORY/Hooks/revert.sh /etc/libvirt/hooks/qemu.d/win10-hidden-pt/release/end/
+#sudo cp Hooks/isocpurevert.sh /etc/libvirt/hooks/qemu.d/win10/release/end/
+cp Hooks/kvm.conf /etc/libvirt/hooks/
 
-printf ${MAGENTA}"Copying hooks into root directory...\n"
-printf ${LIGHTGREEN}""
-
-sudo mkdir /etc/libvirt/hooks/qemu.d
-sudo mkdir /etc/libvirt/hooks/qemu.d/win10
-sudo mkdir /etc/libvirt/hooks/qemu.d/win10/prepare
-sudo mkdir /etc/libvirt/hooks/qemu.d/win10/prepare/begin
-sudo mkdir /etc/libvirt/hooks/qemu.d/win10/release
-sudo mkdir /etc/libvirt/hooks/qemu.d/win10/release/end
-
-sudo cp Hooks/start.sh /etc/libvirt/hooks/qemu.d/win10/prepare/begin/
-sudo cp Hooks/isolstart.sh /etc/libvirt/hooks/qemu.d/win10/prepare/begin/
-sudo cp Hooks/revert.sh /etc/libvirt/hooks/qemu.d/win10/release/end/
-sudo cp Hooks/isocpurevert.sh /etc/libvirt/hooks/qemu.d/win10/release/end/
-
-printf ${MAGENTA}"Configuring kvm.conf...\n"
-printf ${LIGHTGREEN}""
-
-sudo cp Hooks/kvm.conf /etc/libvirt/hooks/
-
-printf ${LIGHTGREEN}"\nYou are done!\n"
-printf ${LIGHTGREEN}""
