@@ -20,7 +20,7 @@ sudo -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share
 
 # ARTIX LINUX + DINIT
 pacman -Sy --noconfirm
-pacman -S qemu-full libvirt libvirt-dinit edk2-ovmf virt-manager dnsmasq wget
+pacman -S qemu-full libvirt libvirt-dinit edk2-ovmf virt-manager dnsmasq wget --noconfirm
 
 mkdir /etc/libvirt/hooks
 
