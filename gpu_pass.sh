@@ -39,3 +39,5 @@ cp $WORKDIRECTORY/Hooks/revert.sh /etc/libvirt/hooks/qemu.d/win10-hidden-pt/rele
 #sudo cp Hooks/isocpurevert.sh /etc/libvirt/hooks/qemu.d/win10/release/end/
 cp Hooks/kvm.conf /etc/libvirt/hooks/
 
+usermod -aG libvirt,kvm,input,audio,video $PERMUSER
+
