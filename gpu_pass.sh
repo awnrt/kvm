@@ -9,7 +9,6 @@ fi
 sudo -u $PERMUSER mkdir -p /home/$PERMUSER/.local/share/vgabios
 sudo -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share/vgabios
 
-# FOR ARCH LINUX vvvv
 #pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget qemu-ui-sdl qemu-ui-gtk
 #systemctl enable libvirtd.service
 #systemctl start libvirtd.service
@@ -39,4 +38,3 @@ cp $WORKDIRECTORY/Hooks/revert.sh /etc/libvirt/hooks/qemu.d/win10-hidden-pt/rele
 cp Hooks/kvm.conf /etc/libvirt/hooks/
 
 usermod -aG libvirt,kvm,input,audio,video $PERMUSER
-
