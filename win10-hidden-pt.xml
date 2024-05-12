@@ -1,10 +1,3 @@
-<!--
-WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
-OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
-  virsh edit win10-hidden-pt
-or other application using the libvirt API.
--->
-
 <domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win10-hidden-pt</name>
   <uuid>5de3881c-2777-414a-9ccf-a1cf01877a55</uuid>
@@ -71,6 +64,7 @@ or other application using the libvirt API.
     <loader readonly='yes' type='pflash'>/usr/share/edk2/x64/OVMF_CODE.fd</loader>
     <nvram template='/usr/share/edk2/x64/OVMF_VARS.fd'>/var/lib/libvirt/qemu/nvram/win10-hidden-pt_VARS.fd</nvram>
     <boot dev='hd'/>
+    <smbios mode='sysinfo'/>
   </os>
   <features>
     <acpi/>
@@ -225,3 +219,4 @@ or other application using the libvirt API.
     <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/by-id/usb-ROYUAN_Gaming_keyboard-event-kbd,grab_all=on,repeat=on'/>
   </qemu:commandline>
 </domain>
+
