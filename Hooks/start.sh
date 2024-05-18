@@ -4,7 +4,7 @@ set -x
 source "/etc/libvirt/hooks/kvm.conf"
 
 #systemctl stop sddm.service
-killall dwl
+killall Hyprland
 
 echo 0 > /sys/class/vtconsole/vtcon0/bind
 echo 0 > /sys/class/vtconsole/vtcon1/bind
