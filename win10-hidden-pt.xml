@@ -39,16 +39,16 @@
       <entry name='version'>P1.60</entry>
     </bios>
     <system>
-      <entry name='manufacturer'>MSI</entry>
+      <entry name='manufacturer'>ASUS</entry>
       <entry name='product'>GENERIC</entry>
-      <entry name='version'>1.0</entry>
+      <entry name='version'>1.2</entry>
     </system>
     <baseBoard>
-      <entry name='manufacturer'>MSI</entry>
+      <entry name='manufacturer'>ASUS</entry>
       <entry name='product'>Z390</entry>
     </baseBoard>
     <chassis>
-      <entry name='manufacturer'>MSI</entry>
+      <entry name='manufacturer'>ASUS</entry>
       <entry name='version'>2.0</entry>
       <entry name='serial'>GENERIC</entry>
       <entry name='asset'>GENERIC</entry>
@@ -74,10 +74,14 @@
       <vapic state='on'/>
       <spinlocks state='on' retries='8191'/>
     </hyperv>
+    <kvm>
+      <hidden state='on'/>
+    </kvm>
     <vmport state='off'/>
   </features>
   <cpu mode='host-passthrough' check='none' migratable='on'>
     <topology sockets='1' dies='1' clusters='1' cores='5' threads='2'/>
+    <feature policy='disable' name='hypervisor'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -94,12 +98,6 @@
   </pm>
   <devices>
     <emulator>/bin/qemu-system-x86_64</emulator>
-    <disk type='file' device='disk'>
-      <driver name='qemu' type='raw'/>
-      <source file='/mnt/nvme/win11.raw'/>
-      <target dev='vda' bus='virtio'/>
-      <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
-    </disk>
     <controller type='usb' index='0' model='qemu-xhci' ports='15'>
       <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
     </controller>
@@ -180,7 +178,7 @@
     <interface type='network'>
       <mac address='52:54:00:de:2f:fd'/>
       <source network='default'/>
-      <model type='e1000e'/>
+      <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     <input type='mouse' bus='ps2'/>
