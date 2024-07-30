@@ -6,8 +6,8 @@
       <libosinfo:os id="http://microsoft.com/win/10"/>
     </libosinfo:libosinfo>
   </metadata>
-  <memory unit='KiB'>16777216</memory>
-  <currentMemory unit='KiB'>16777216</currentMemory>
+  <memory unit='KiB'>28672000</memory>
+  <currentMemory unit='KiB'>28672000</currentMemory>
   <vcpu placement='static' cpuset='1-5,7-11'>10</vcpu>
   <cputune>
     <vcpupin vcpu='0' cpuset='1'/>
@@ -176,9 +176,9 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
     </controller>
     <interface type='network'>
-      <mac address='52:54:00:de:2f:fd'/>
+      <mac address='52:54:00:7e:d6:6e'/>
       <source network='default'/>
-      <model type='virtio'/>
+      <model type='e1000e'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     <input type='mouse' bus='ps2'/>
