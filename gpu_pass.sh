@@ -6,8 +6,8 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-sudo -u $PERMUSER mkdir -p /home/$PERMUSER/.local/share/vgabios
-sudo -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share/vgabios
+doas -u $PERMUSER mkdir -p /home/$PERMUSER/.local/share/vgabios
+doas -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share/vgabios
 
 #pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq wget qemu-ui-sdl qemu-ui-gtk
 #systemctl enable libvirtd.service
@@ -18,7 +18,7 @@ sudo -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share
 #virsh net-start default
 
 pacman -Sy --noconfirm
-pacman -S qemu-full libvirt libvirt-runit edk2-ovmf virt-manager dnsmasq wget --noconfirm
+pacman -S qemu-desktop libvirt libvirt-runit edk2-ovmf virt-manager dnsmasq wget --noconfirm
 
 mkdir /etc/libvirt/hooks
 
