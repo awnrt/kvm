@@ -20,7 +20,7 @@ doas -u $PERMUSER cp $WORKDIRECTORY/Hooks/patch.rom /home/$PERMUSER/.local/share
 #virsh net-start default
 
 pacman -Sy --noconfirm
-pacman -S qemu-desktop libvirt libvirt-openrc edk2-ovmf virt-manager dnsmasq wget --noconfirm
+pacman -S qemu-desktop libvirt libvirt-dinit edk2-ovmf virt-manager dnsmasq wget --noconfirm
 
 mkdir /etc/libvirt/hooks
 
